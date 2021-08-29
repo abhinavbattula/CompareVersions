@@ -1,6 +1,7 @@
 package test.java;
 
-import main.java.CompareVersions;
+import main.java.CompareVersionsImpl;
+import main.java.ICompareVersions;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,17 +11,18 @@ public class CompareVersionsTest {
     public void testCompareVersions() throws Exception {
         String v1 = "1.2";
         String v2 = "1.2.9.9.9.9";
-        int result = CompareVersions.compareVersion(v1, v2);
+        ICompareVersions compareVersions = new CompareVersionsImpl();
+        int result = compareVersions.compareVersion(v1, v2);
         Assert.assertEquals(result, -1);
 
         v1 = "1.20.9.9.9.9";
         v2 = "1.3";
-        result = CompareVersions.compareVersion(v1, v2);
+        result = compareVersions.compareVersion(v1, v2);
         Assert.assertEquals(result, 1);
 
         v1 = "1.3.1";
         v2 = "1.3.1";
-        result = CompareVersions.compareVersion(v1, v2);
+        result = compareVersions.compareVersion(v1, v2);
         Assert.assertEquals(result, 0);
     }
 
@@ -28,6 +30,7 @@ public class CompareVersionsTest {
     public void testCompareVersionsInvalidInput() throws Exception {
         String v1 = ".1.2";
         String v2 = ".1.2.9.9.9.9";
-        CompareVersions.compareVersion(v1, v2);
+        ICompareVersions compareVersions = new CompareVersionsImpl();
+        int result = compareVersions.compareVersion(v1, v2);
     }
 }

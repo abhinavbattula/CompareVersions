@@ -1,7 +1,16 @@
 package main.java;
 
-public class CompareVersions {
-    public static int compareVersion(String version1, String version2) {
+public class CompareVersionsImpl implements ICompareVersions{
+
+    /**
+     * <p>
+     * This method takes two version numbers version1 and version2.
+     * @param version1
+     * @param version2
+     * @return result based on the comparison
+     * **/
+    @Override
+    public int compareVersion(String version1, String version2) {
         String[] numsArray1 = version1.split("\\.");
         String[] numsArray2 = version2.split("\\.");
         int n1 = numsArray1.length, n2 = numsArray2.length;
